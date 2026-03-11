@@ -1,0 +1,20 @@
+// app/lib/db.ts
+import "dotenv/config";
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+
+const connectionString = `${process.env.DATABASE_URL}`;
+const adapter = new PrismaPg({ connectionString });
+export const prisma = new PrismaClient({ adapter });
+
+export async function checkDbConnexion(): Promise<boolean> {
+  try {
+    // This is a great way to verify the connection early
+    await prisma.$queryRaw`SELECT 1`;
+    return true;
+  } catch (error) {
+    console.error(`Database connection failed: ${error}`);
+    return false;
+  }
+}
