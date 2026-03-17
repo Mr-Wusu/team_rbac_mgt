@@ -27,8 +27,7 @@ export async function GET(Request: NextRequest) {
       where.OR = [{ teamId: user.teamId }, { role: Role.USER }];
     } else {
       // Regular users can only see their team
-      where.teamId = user.teamId;
-      where.role = { not: Role.ADMIN };
+      where.AND = [{ teamId: user.teamId }, { role: { not: Role.ADMIN } }];
     }
 
     // Additional filters
@@ -52,5 +51,11 @@ export async function GET(Request: NextRequest) {
       },
       orderBy: { createdAt: "desc" },
     });
-  } catch (error) {}
+    return NextResponse.json({ users });
+  } catch (error) {
+    console.error("Get users error:", error);
+    return NextResponse.json({
+      error: "Internal server error! Something went wrong!",
+    }, {status: 500});
+  }
 }
