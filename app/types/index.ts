@@ -1,3 +1,5 @@
+import { Prisma } from "@/generated/prisma";
+
 export enum Role {
   ADMIN = "ADMIN",
   MANAGER = "MANAGER",
@@ -32,3 +34,26 @@ export interface AuthContextType {
   logout: () => void;
   hasPermission: (requiredRole: Role) => boolean
 }
+
+// User with their team relation included
+export type UserWithTeam = Prisma.UserGetPayload<{
+  include: { team: true };
+}>;
+
+// User with only partial team fields (for cross-team view)
+export type UserWithPartialTeam = Prisma.UserGetPayload<{
+  include: {
+    team: {
+      select: { id: true; name: true; code: true; description: true };
+    };
+  };
+}>;
+
+// Team with its members (partial member fields)
+export type TeamWithMembers = Prisma.TeamGetPayload<{
+  include: {
+    members: {
+      select: { id: true; name: true; role: true; email: true };
+    };
+  };
+}>;
