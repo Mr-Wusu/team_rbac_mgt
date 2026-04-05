@@ -20,7 +20,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className="min-h-screen bg-slate-950 text-slate-100">
+        <body className="min-h-screen bg-slate-950 text-slate-100 grid place-content-center">
           <Header />
           <main className="pt-18">{children}</main>
         </body>

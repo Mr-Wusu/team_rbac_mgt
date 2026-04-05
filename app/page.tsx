@@ -3,7 +3,7 @@ import Link from "next/link";
 function Home() {
   const user = true;
   return (
-    <div className="max-w-4xl mx-auto py-10">
+    <div className="max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-white">
         Team Access Control Demo
       </h1>
