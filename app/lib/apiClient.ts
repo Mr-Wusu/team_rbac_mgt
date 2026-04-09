@@ -65,7 +65,7 @@ const apiClient = {
     });
   },
 
-  async assignUserToTeam(userId: string, teamId: string) {
+  async assignUserToTeam(userId: string, teamId: string | null) {
     return apiClient.request(`/api/users/${userId}/team`, {
       method: "PATCH",
       body: JSON.stringify({ teamId }),
