@@ -47,8 +47,15 @@ export default function AdminDashboard({
     });
   }
 
+  const ordinaryUsers = users.filter(
+    (user) => user.role === "USER",
+  );
+  const managers = users.filter(
+    (user) => user.role === "MANAGER",
+  );
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-16">
       <div>
         <h1 className="text-2xl font-bold mb-2 text-white">Admin Dashboard</h1>
         <p className="text-slate-300">User and team management</p>
@@ -119,7 +126,7 @@ export default function AdminDashboard({
                         ))}
                       </select>
                       {user.team && (
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-500 ml-3">
                           {user.team.code}
                         </span>
                       )}
@@ -201,6 +208,30 @@ export default function AdminDashboard({
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 fixed bottom-0 w-full">
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+          <p className="text-2xl font-bold text-white">{users.length}</p>
+          <p className="text-sm text-slate-400">Total Users</p>
+        </div>
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+          <p className="text-2xl font-bold text-white">1</p>
+          <p className="text-sm text-slate-400">Admin</p>
+        </div>
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+          <p className="text-2xl font-bold text-white">{managers.length}</p>
+          <p className="text-sm text-slate-400">Managers</p>
+        </div>
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+          <p className="text-2xl font-bold text-white">
+            {ordinaryUsers.length}
+          </p>
+          <p className="text-sm text-slate-400">Users</p>
+        </div>
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 text-center">
+          <p className="text-2xl font-bold text-white">{teams.length}</p>
+          <p className="text-sm text-slate-400">Teams</p>
         </div>
       </div>
     </div>

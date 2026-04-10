@@ -16,6 +16,7 @@ export default async function ManagerPage() {
       ? prisma.user.findMany({
           where: { teamId: user.teamId, role: { not: Role.ADMIN } },
           include: { team: true },
+          orderBy: [{ teamId: "desc" }, { name: "asc" }],
         })
       : Promise.resolve([]), // ✅ returns Promise<never[]> — consistent type
     prisma.user.findMany({
@@ -25,7 +26,7 @@ export default async function ManagerPage() {
           select: { id: true, name: true, code: true, description: true },
         },
       },
-      orderBy: { teamId: "desc" },
+      orderBy: [{ teamId: "desc" }, { name: "asc" }],
     }),
   ]);
 
