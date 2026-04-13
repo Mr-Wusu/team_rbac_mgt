@@ -20,7 +20,7 @@ export default function ManagerDashboard({
   const teamMembers = myTeamMembers.filter((member)=> member.role !== "MANAGER")
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-12">
       <div>
         <h1 className="text-2xl font-bold mb-2 text-white">
           Manager&apos;s Dashboard
@@ -32,7 +32,7 @@ export default function ManagerDashboard({
         <div className="bg-slate-800 border border-slate-700 rounded-lg h-fit">
           <div className="p-4 border-b border-slate-700">
             <h3 className="font-semibold text-white">
-              Team members: {allTeamMembers.length}
+              All teams members: {allTeamMembers.length}
             </h3>
           </div>
           <div className="p-4">
@@ -56,7 +56,7 @@ export default function ManagerDashboard({
           <div className="bg-slate-800 border border-slate-700 rounded-lg h-fit">
             <div className="p-4 border-b border-slate-700">
               <h3 className="font-semibold text-white">
-                My Team members: {teamMembers.length}
+                My team members: {teamMembers.length}
               </h3>
             </div>
             <div className="p-4">
@@ -78,7 +78,7 @@ export default function ManagerDashboard({
           <div className="bg-slate-800 border border-slate-700 rounded-lg h-fit">
             <div className="p-4 border-b border-slate-700">
               <h3 className="font-semibold text-white">
-                Other Managers: {managers.length}
+                Other managers: {managers.length}
               </h3>
             </div>
             <div className="p-4">

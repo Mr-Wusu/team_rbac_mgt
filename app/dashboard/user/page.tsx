@@ -11,7 +11,7 @@ export default async function UserPage() {
 
   // Fetch user's team members with specific data
   const teamMembers = user.teamId
-    ? prisma.user.findMany({
+    ? await prisma.user.findMany({
         where: {
           teamId: user.teamId,
         },
@@ -24,5 +24,5 @@ export default async function UserPage() {
       })
     : [];
 
-  return <UserDashboard teamMembers={teamMembers} currentUser={user} />;
+  return <UserDashboard myTeamMembers={teamMembers} currentUser={user} />;
 }
