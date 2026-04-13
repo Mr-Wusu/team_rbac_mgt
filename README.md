@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a team management application, built with with Next.Js 16, Prisma and PostgreSQL. It is a demonstration of a fullstack application encompassing frontend and backend (Built based on RESTAPI guidelines).
 
-## Getting Started
+## User Experiences
 
-First, run the development server:
+There are different users with different interfaces and privileges.
+Admin user has access to assign users to team or change a user's team or role, and can view all categories of users.
+Managers cannot change roles or teams for any user but can view members of their team and other teams, as well as view other teams' managers.
+Ordinary users can only view their own team members.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## For Admin Access
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To see admin priviledges use
+email: wusu_prince@yahoo.com
+password: #Pharcourt6
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## For Manager's Access
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To see manager's priviledges use
+email: aigbe.sandra@yahoo.com
+password: #Pharcourt6
 
-## Learn More
+## Some concepts used
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Server actions in conjuction with useActionState and useContext hook for global user state management
