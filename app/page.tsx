@@ -1,4 +1,4 @@
-import UserAtHomePage from "./_component/layout/UserAtHomePage";
+import UserAtHomePage from "@/app/_component/layout/UserAtHomePage";
 
 function Home() {
   return (
