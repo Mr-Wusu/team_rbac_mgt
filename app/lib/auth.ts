@@ -32,11 +32,19 @@ export async function getCurrentuser(): Promise<User | null> {
 
     if (!token) return null;
     const decode = verifyToken(token);
-    const userFromDB = await prisma.user.findUnique({
-      where: {
-        id: decode.userId,
-      },
-    });
+
+    // Add timeout to prevent hanging database queries
+    const userFromDB = await Promise.race([
+      prisma.user.findUnique({
+        where: {
+          id: decode.userId,
+        },
+      }),
+      new Promise<null>((_, reject) =>
+        setTimeout(() => reject(new Error("Database query timeout")), 5000),
+      ),
+    ]);
+
     if (!userFromDB) return null;
 
     const { ...user } = userFromDB;
@@ -47,16 +55,13 @@ export async function getCurrentuser(): Promise<User | null> {
   }
 }
 
-export function checkUserPermission(
-  user: User,
-  requiredRole: Role,
-): boolean {
+export function checkUserPermission(user: User, requiredRole: Role): boolean {
   const roleHierarchy = {
     [Role.GUEST]: 0,
     [Role.USER]: 1,
     [Role.MANAGER]: 2,
-    [Role.ADMIN]: 3
-  }
+    [Role.ADMIN]: 3,
+  };
 
-  return roleHierarchy[user.role] >= roleHierarchy[requiredRole]
+  return roleHierarchy[user.role] >= roleHierarchy[requiredRole];
 }
